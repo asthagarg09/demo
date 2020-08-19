@@ -1,0 +1,69 @@
+<br/><br/>
+<app-header></app-header>
+<mat-drawer-container>
+    <mat-drawer mode="side" opened><app-sidebar></app-sidebar></mat-drawer>
+    <mat-drawer-content>
+        <form [formGroup]="uploadForm" (ngSubmit)="submitForm()">
+
+        <div  class="form-group">
+      
+        <label  for="name">Name</label>
+      
+        <input  
+      
+        formControlName="name"
+      
+        id="name"  
+      
+        type="text"  
+      
+        class="form-control">
+      
+        <div *ngIf="f.name.touched && f.name.invalid">
+      
+        <div *ngIf="f.name.errors.required">Filename is required</div>
+      
+        </div>
+      
+        </div>
+      
+        <div  class="form-group">
+      
+        <label  for="filename">File</label>
+      
+        <input  
+      
+        formControlName="filename"
+      
+        id="filename"  
+      
+        type="file"  
+      
+        multiple
+      
+        class="form-control"
+      
+       (change)="onFileChange($event)">
+      
+        <div *ngIf="f.filename.touched && f.filename.invalid">
+        <div *ngIf="f.filename.errors.required">Choose a file</div>
+        </div>
+        </div>
+      
+        <button type="submit">Upload</button>
+      
+      </form>
+      <table>
+          <tr *ngFor = "let x of data[0]">
+              <td> {{ x.id }} </td>
+              <td> {{ x.name }} </td>
+              <td><a href="http://localhost/capstoneProject/php/quiz/{{x.name}}/{{x.filename}}" download> {{ x.filename }}</a> </td>
+              <!--<td><mat-slide-toggle [formControl]="Visible" formControlName="status" (change)="onChange()">Visible</mat-slide-toggle></td>-->
+          </tr>
+      
+      </table>
+</mat-drawer-content>
+</mat-drawer-container>
+<app-footer></app-footer>
+
+
